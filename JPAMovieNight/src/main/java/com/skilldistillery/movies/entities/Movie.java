@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Movie {
@@ -17,8 +19,8 @@ public class Movie {
 	private int id;
 	
 	private String title;
-	private int season;
-	private int episode;
+	private Integer season;
+	private Integer episode;
 	
 	@Column(name="image_url")
 	private String imageURL;
@@ -27,12 +29,15 @@ public class Movie {
 	@Column(name="have_watched")
 	private boolean haveWatched;
 	
-	@Column(name="date_wacthed")
+	@Column(name="date_watched")
 	private LocalDateTime dateWatched;
 	
 	@Column(name="date_plan_to_see")
 	private LocalDateTime dateScheduled;
 	
+	@ManyToOne
+	@JoinColumn(name="snack_id")
+	private Snack snackId;
 		
 //-----------------------CONSTRUCTORS----------------------------------	
 
@@ -73,7 +78,7 @@ public class Movie {
 		return season;
 	}
 
-	public void setSeason(int season) {
+	public void setSeason(Integer season) {
 		this.season = season;
 	}
 
@@ -81,7 +86,7 @@ public class Movie {
 		return episode;
 	}
 
-	public void setEpisode(int episode) {
+	public void setEpisode(Integer episode) {
 		this.episode = episode;
 	}
 
@@ -125,9 +130,22 @@ public class Movie {
 		this.dateScheduled = dateScheduled;
 	}
 	
+
+	public Snack getSnackId() {
+		return snackId;
+	}
+
+
+	public void setSnackId(Snack snackId) {
+		this.snackId = snackId;
+	}
+
+
 	
 //-----------------HASHCODE/EQUALS-------------------	
 
+	
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

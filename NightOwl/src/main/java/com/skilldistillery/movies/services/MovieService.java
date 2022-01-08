@@ -9,9 +9,10 @@ import com.skilldistillery.movies.entities.Movie;
 public interface MovieService {
 	
 	List<Movie> getAllMovies();
-	Movie getById();
-//	Movie addNewMovie();
-//	Movie updateMovie();
-//	Movie deleteMovie();
+	Movie getById(int movieId);
+	Movie addNewMovie(Movie movie);
+	Movie updateMovie(Movie movie, int movieId);
+	boolean deleteMovie(int movieId, int snackId);
+	List<Movie> findMovieByKeyword(String keyword);
 
 }
