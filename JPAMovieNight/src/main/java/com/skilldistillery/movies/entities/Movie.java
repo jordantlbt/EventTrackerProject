@@ -1,7 +1,9 @@
 package com.skilldistillery.movies.entities;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,13 +17,41 @@ public class Movie {
 	private int id;
 	
 	private String title;
+	private int season;
+	private int episode;
+	
+	@Column(name="image_url")
+	private String imageURL;
+	private String category;
+	
+	@Column(name="have_watched")
+	private boolean haveWatched;
+	
+	@Column(name="date_wacthed")
+	private LocalDateTime dateWatched;
+	
+	@Column(name="date_plan_to_see")
+	private LocalDateTime dateScheduled;
+	
+		
+//-----------------------CONSTRUCTORS----------------------------------	
 
-//-----------------------METHODS----------------------------------	
 	
 	
 	public Movie() {
 		super();
 	}
+
+	
+	public Movie(String title) {
+	super();
+	this.title = title;
+}
+
+
+//-----------------------GETTERS/SETTERS----------------------------------	
+
+
 
 	public int getId() {
 		return id;
@@ -38,6 +68,63 @@ public class Movie {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
+	public int getSeason() {
+		return season;
+	}
+
+	public void setSeason(int season) {
+		this.season = season;
+	}
+
+	public int getEpisode() {
+		return episode;
+	}
+
+	public void setEpisode(int episode) {
+		this.episode = episode;
+	}
+
+	public String getImageURL() {
+		return imageURL;
+	}
+
+	public void setImageURL(String imageURL) {
+		this.imageURL = imageURL;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public boolean isHaveWatched() {
+		return haveWatched;
+	}
+
+	public void setHaveWatched(boolean haveWatched) {
+		this.haveWatched = haveWatched;
+	}
+
+	public LocalDateTime getDateWatched() {
+		return dateWatched;
+	}
+
+	public void setDateWatched(LocalDateTime dateWatched) {
+		this.dateWatched = dateWatched;
+	}
+
+	public LocalDateTime getDateScheduled() {
+		return dateScheduled;
+	}
+
+	public void setDateScheduled(LocalDateTime dateScheduled) {
+		this.dateScheduled = dateScheduled;
+	}
+	
 	
 //-----------------HASHCODE/EQUALS-------------------	
 
@@ -57,6 +144,9 @@ public class Movie {
 		Movie other = (Movie) obj;
 		return id == other.id;
 	}
+	
+	
+//-----------------TOSTRING-------------------		
 	
 
 	@Override
