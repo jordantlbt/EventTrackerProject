@@ -1,5 +1,6 @@
 package com.skilldistillery.movies.entities;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -19,7 +20,11 @@ public class Movie {
 	private int id;
 	
 	private String title;
+	
+	
 	private Integer season;
+	
+	
 	private Integer episode;
 	
 	@Column(name="image_url")
@@ -30,10 +35,10 @@ public class Movie {
 	private boolean haveWatched;
 	
 	@Column(name="date_watched")
-	private LocalDateTime dateWatched;
+	private LocalDate dateWatched;
 	
 	@Column(name="date_plan_to_see")
-	private LocalDateTime dateScheduled;
+	private LocalDate dateScheduled;
 	
 	@ManyToOne
 	@JoinColumn(name="snack_id")
@@ -74,7 +79,7 @@ public class Movie {
 		this.title = title;
 	}
 
-	public int getSeason() {
+	public Integer getSeason() {
 		return season;
 	}
 
@@ -82,7 +87,7 @@ public class Movie {
 		this.season = season;
 	}
 
-	public int getEpisode() {
+	public Integer getEpisode() {
 		return episode;
 	}
 
@@ -114,19 +119,19 @@ public class Movie {
 		this.haveWatched = haveWatched;
 	}
 
-	public LocalDateTime getDateWatched() {
+	public LocalDate getDateWatched() {
 		return dateWatched;
 	}
 
-	public void setDateWatched(LocalDateTime dateWatched) {
+	public void setDateWatched(LocalDate dateWatched) {
 		this.dateWatched = dateWatched;
 	}
 
-	public LocalDateTime getDateScheduled() {
+	public LocalDate getDateScheduled() {
 		return dateScheduled;
 	}
 
-	public void setDateScheduled(LocalDateTime dateScheduled) {
+	public void setDateScheduled(LocalDate dateScheduled) {
 		this.dateScheduled = dateScheduled;
 	}
 	

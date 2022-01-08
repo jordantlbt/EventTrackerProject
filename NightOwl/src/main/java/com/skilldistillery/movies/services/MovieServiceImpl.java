@@ -48,15 +48,15 @@ public class MovieServiceImpl implements MovieService {
 	}
 
 	@Override
-	public boolean deleteMovie(int movieId, int snackId) {
+	public boolean deleteMovie(int movieId) {
 		boolean isDeleted = false;
 		Optional<Movie> movieOp = movieRepo.findById(movieId);
 		if(movieOp.isPresent()) {
 			Movie movie = movieOp.get();
-			if(movie.getSnackId().getId() == snackId) {
 				movieRepo.deleteById(movieId);
 				isDeleted = true;
-			}
+//			if(movie.getSnackId().getId() == snackId) {
+//			}
 			
 		}
 		return isDeleted;

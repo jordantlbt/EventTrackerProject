@@ -12,7 +12,7 @@ public interface MovieService {
 	Movie getById(int movieId);
 	Movie addNewMovie(Movie movie);
 	Movie updateMovie(Movie movie, int movieId);
-	boolean deleteMovie(int movieId, int snackId);
+	boolean deleteMovie(int movieId);
 	List<Movie> findMovieByKeyword(String keyword);
 
 }

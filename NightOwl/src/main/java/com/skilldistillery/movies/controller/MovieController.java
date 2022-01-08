@@ -5,8 +5,11 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,6 +35,26 @@ public class MovieController {
 			res.setStatus(404);
 		}
 		return movie;
+	}
+	
+	@PostMapping("movies")
+	public Movie addNewMovie(@RequestBody Movie movie, HttpServletResponse res) {
+		try {
+			Movie newMovie = movieServ.addNewMovie(movie);
+			if(newMovie != null) {
+				res.setStatus(201);
+				return newMovie;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+		}
+		return null;
+	}
+	
+	@DeleteMapping("movies/{movieId}")
+	public void deleteMovie(@PathVariable Integer movieId, HttpServletResponse res) {
+		movieServ.deleteMovie(movieId);
 	}
 
 }
