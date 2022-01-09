@@ -14,5 +14,6 @@ public interface MovieService {
 	Movie updateMovie(Movie movie, int movieId);
 	boolean deleteMovie(int movieId);
 	List<Movie> findMovieByKeyword(String keyword);
+	List<Movie> findShowByTitleAndSeason(String title, int season);
 
 }

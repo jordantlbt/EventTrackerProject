@@ -62,5 +62,11 @@ public class MovieController {
 		List<Movie> result = movieServ.findMovieByKeyword(keyword);
 		return result;
 	}
+	
+	@GetMapping("movies/search/{title}/{season}")
+	public List<Movie> findMovieByTitleAndSeason(@PathVariable String title, @PathVariable Integer season, HttpServletResponse res){
+		List<Movie> result = movieServ.findShowByTitleAndSeason(title, season);
+		return result;
+	}
 
 }

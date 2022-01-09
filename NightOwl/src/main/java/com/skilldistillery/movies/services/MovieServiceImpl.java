@@ -52,7 +52,7 @@ public class MovieServiceImpl implements MovieService {
 		boolean isDeleted = false;
 		Optional<Movie> movieOp = movieRepo.findById(movieId);
 		if(movieOp.isPresent()) {
-			Movie movie = movieOp.get();
+			//Movie movie = movieOp.get();
 				movieRepo.deleteById(movieId);
 				isDeleted = true;
 //			if(movie.getSnackId().getId() == snackId) {
@@ -66,6 +66,12 @@ public class MovieServiceImpl implements MovieService {
 	public List<Movie> findMovieByKeyword(String keyword) {
 		keyword = "%" + keyword + "%";
 		return movieRepo.findByTitleLike(keyword);
+	}
+
+	@Override
+	public List<Movie> findShowByTitleAndSeason(String title, int season) {
+		title = "%" + title + "%";
+		return movieRepo.findByTitleLikeAndSeasonLike(title, season);
 	}
 	
 	

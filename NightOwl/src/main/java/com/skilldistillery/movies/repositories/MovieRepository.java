@@ -9,5 +9,6 @@ import com.skilldistillery.movies.entities.Movie;
 public interface MovieRepository extends JpaRepository<Movie, Integer> {
 	
 	List<Movie> findByTitleLike(String keyword);
+	List<Movie> findByTitleLikeAndSeasonLike(String keyword, int season);
 
 }
