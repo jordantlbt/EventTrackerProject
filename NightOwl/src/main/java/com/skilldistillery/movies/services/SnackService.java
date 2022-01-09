@@ -10,7 +10,7 @@ public interface SnackService {
 	Snack getById(int snackId);
 	Snack addNewSnack(Snack snack);
 	Snack updateSnack(Snack snack, int snackId);
-	boolean deleteMovie(int snackId);
+	boolean deleteSnack(int snackId);
 	List<Snack> findSnackByKeyword(String keyword);
 
 }

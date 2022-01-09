@@ -24,7 +24,7 @@ public class MovieController {
 	private MovieService movieServ;
 	
 	@GetMapping("movies")
-	public List<Movie> index(){
+	public List<Movie> allMovies(){
 		return movieServ.getAllMovies();
 	}
 	
@@ -55,6 +55,12 @@ public class MovieController {
 	@DeleteMapping("movies/{movieId}")
 	public void deleteMovie(@PathVariable Integer movieId, HttpServletResponse res) {
 		movieServ.deleteMovie(movieId);
+	}
+	
+	@GetMapping("movies/search/{keyword}")
+	public List<Movie> findMovieByKeyword(@PathVariable String keyword, HttpServletResponse res){
+		List<Movie> result = movieServ.findMovieByKeyword(keyword);
+		return result;
 	}
 
 }

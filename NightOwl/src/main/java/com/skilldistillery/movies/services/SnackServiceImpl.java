@@ -45,7 +45,7 @@ public class SnackServiceImpl implements SnackService {
 	}
 
 	@Override
-	public boolean deleteMovie(int snackId) {
+	public boolean deleteSnack(int snackId) {
 		boolean isDeleted = false;
 		Optional<Snack> snackOp = snackRepo.findById(snackId);
 		if(snackOp.isPresent()) {
