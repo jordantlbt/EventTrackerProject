@@ -34,4 +34,4 @@ Spring Tool Suit, Java, MySQL, MySQLWorkbench, JSON, Postman, Git, Github, Termi
 
 ## Lessons Learned
 
-This project helped me solidify my knowledge of combining a JPA project with a REST project.
+This project helped me solidify my knowledge of combining a JPA project with a REST project. I am becoming more comfortable with writing a controller, the REST API mappings, and HTTPServletResponses.

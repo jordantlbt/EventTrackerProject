@@ -53,12 +53,21 @@ public class SnackController {
 	
 	@DeleteMapping("snacks/{snackId}")
 	public void deleteSnack(@PathVariable Integer snackId, HttpServletResponse res) {
-		snackServ.deleteSnack(snackId);
+		try {
+			snackServ.deleteSnack(snackId);
+			res.setStatus(201);
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+		}
 	}
 	
 	@GetMapping("snacks/search/{keyword}")
 	public List<Snack> findMovieByKeyword(@PathVariable String keyword, HttpServletResponse res){
 		List<Snack> result = snackServ.findSnackByKeyword(keyword);
+		if(result == null) {
+			res.setStatus(404);
+		}
 		return result;
 	}
 	

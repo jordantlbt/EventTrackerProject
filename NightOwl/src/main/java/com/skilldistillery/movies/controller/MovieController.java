@@ -54,18 +54,31 @@ public class MovieController {
 	
 	@DeleteMapping("movies/{movieId}")
 	public void deleteMovie(@PathVariable Integer movieId, HttpServletResponse res) {
-		movieServ.deleteMovie(movieId);
+		try {
+			movieServ.deleteMovie(movieId);
+			res.setStatus(201);
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+		}
 	}
 	
 	@GetMapping("movies/search/{keyword}")
 	public List<Movie> findMovieByKeyword(@PathVariable String keyword, HttpServletResponse res){
 		List<Movie> result = movieServ.findMovieByKeyword(keyword);
+		if(result == null) {
+			res.setStatus(404);
+		}
+		
 		return result;
 	}
 	
 	@GetMapping("movies/search/{title}/{season}")
 	public List<Movie> findMovieByTitleAndSeason(@PathVariable String title, @PathVariable Integer season, HttpServletResponse res){
 		List<Movie> result = movieServ.findShowByTitleAndSeason(title, season);
+		if(result == null) {
+			res.setStatus(404);
+		}
 		return result;
 	}
 
