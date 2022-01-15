@@ -8,6 +8,7 @@
 
 	<!-- entities -->
 	<class>com.skilldistillery.movies.entities.Movie</class>
+	<class>com.skilldistillery.movies.entities.Snack</class>
 
 	<!-- entities -->
 
