@@ -7,7 +7,31 @@ window.addEventListener("load", function (e) {
 
 function init() {
   console.log("In init");
-  getAllMovies();
+  let showAll = document.getElementById('showAll');
+  var hideAll = document.getElementById('moviesList');
+  showAll.addEventListener('click', function(e){
+	  e.preventDefault;
+	 if(hideAll.textContent != ""){ 
+		 showAll.textContent = "Show All";
+		 hideAll.textContent = '';
+		}else{
+			getAllMovies();
+			showAll.textContent = "Hide All";
+	 }
+  });
+
+  document.searchForm.searchId.addEventListener('click', function(e){
+	e.preventDefault();
+	var movieId = document.searchForm.movieId.value;
+		getMovieById(movieId);
+  });
+
+//   document.searchForm.searchTitle.addEventListener('click', function(e){
+// 	  e.preventDefault();
+// 	  var new = document.search;
+//   })
+
+  
 }
 
 function getAllMovies() {
@@ -17,12 +41,65 @@ function getAllMovies() {
     if (xhr.readyState === 4) {
       if (xhr.status === 200) {
         let movies = JSON.parse(xhr.responseText);
-        displayAllMovies(movies);
+		displayAllMovies(movies);
+        
       }
     }
   };
   xhr.send();
 }
+function getMovieById(movieId) {
+  let xhr = new XMLHttpRequest();
+  xhr.open("GET", `api/movies/${movieId}`);
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        let movie = JSON.parse(xhr.responseText);
+		displayMovie(movie);
+        
+      }
+    }
+  };
+  xhr.send();
+}
+
+function displayMovie(movie){
+	var resultDiv = document.getElementById("result");
+	resultDiv.textContent = '';
+	let h1 = document.createElement('h1');
+	h1.textContent = movie.title;
+	resultDiv.appendChild(h1);
+	let img = new Image();
+	img.src = movie.imageURL;
+	resultDiv.appendChild(img);
+	
+	let ul = document.createElement('ul');
+	resultDiv.appendChild(ul);
+	
+	if(movie.season != null || movie.episode != null){
+		let li1 = document.createElement('li');
+		li1.textContent = "Season " + movie.season + " Episode " + movie.episode;
+		ul.appendChild(li1);
+	}
+	if(movie.category != null){
+		let li2 = document.createElement('li');
+		li2.textContent = movie.category;
+		ul.appendChild(li2);
+	}
+	if(movie.dateWatched != null){
+		let li3 = document.createElement('li');
+		li3.textContent = "Date Watched: " +  movie.dateWatched;
+		ul.appendChild(li3);
+	}
+	if(movie.dateScheduled != null){
+		let li4 = document.createElement('li');
+		li4.textContent = "Date Scheduled to Watch: " + movie.dateScheduled;
+		ul.appendChild(li4);
+	}
+		
+	
+}
+
 
 function displayAllMovies(movies) {
   var dataDiv = document.getElementById("moviesList");
@@ -46,30 +123,26 @@ function displayAllMovies(movies) {
   th3.textContent = "Episode";
   thead.appendChild(th3);
   let th4 = document.createElement("th");
-  th4.textContent = "Have Seen";
+  th4.textContent = "Category";
   thead.appendChild(th4);
   let th5 = document.createElement("th");
-  th5.textContent = "Date Watched";
+  th5.textContent = "Have Seen";
   thead.appendChild(th5);
   let th6 = document.createElement("th");
-  th6.textContent = "Date Plan to Watch";
+  th6.textContent = "Date Watched";
   thead.appendChild(th6);
   let th7 = document.createElement("th");
-  th7.textContent = "Snacks";
+  th7.textContent = "Date Plan to Watch";
   thead.appendChild(th7);
+  let th8 = document.createElement("th");
+  th8.textContent = "Snacks";
+  thead.appendChild(th8);
   let tbody = document.createElement("tbody");
   table.appendChild(tbody);
 
   for (let movie of movies) {
     let tr = document.createElement("tr");
     tbody.appendChild(tr);
-
-	// let img = document.createElement('img');
-	// img.src = movie.imageUrl;
-
-	// let tdImage = document.createElement('td');
-	// tdImage.textContent = img;
-	// tr.appendChild(tdImage);
 
     let td1 = document.createElement("td");
     td1.textContent = movie.title;
@@ -91,6 +164,13 @@ function displayAllMovies(movies) {
 	td3.style.borderBottom = '1px solid black';
 	td3.style.borderTop = '1px solid black';
 	td3.style.borderRight = '1px solid black';
+
+	let td8 = document.createElement("td");
+    td8.textContent = movie.category;
+    tr.appendChild(td8);
+	td8.style.borderBottom = '1px solid black';
+	td8.style.borderTop = '1px solid black';
+	td8.style.borderRight = '1px solid black';
 
 	let td4 = document.createElement('td');
     td4.textContent = movie.haveWatched;
@@ -120,6 +200,26 @@ function displayAllMovies(movies) {
 	td7.style.borderTop = '1px solid black';
 	
   }
+}
+
+
+
+function createNew(newMovie) {
+	let xhr = new XMLHttpRequest();
+	xhr.open('POST', 'api/movies');
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState === 4){
+			if(xhr.status === 200 || xhr.status === 201){
+				let movie = JSON.parse(xhr.responseText);
+				displayFilm(film);
+			}else {
+				console.error('Movie create failed with status: ' + xhr.status);
+			}
+		}
+		
+	}
+		xhr.setRequestHeader('Content-type', 'application/json');
+		xhr.send(JSON.stringify(newMovie));
 }
 
 

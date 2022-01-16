@@ -9,18 +9,63 @@
     <main>
       <h1>Night Owl</h1>
       <h3>Track Your Movie Nights!</h3>
-<form>
+<form name="searchForm">
 <input type="number" name="movieId">
-<button name="search">Search By Id</button><br><br>
+<button name="searchId">Search By Id</button><br><br>
 <input type="text" name="movieSearch">
-<button name="search">Search By Title</button><br><br>
+<button name="searchTitle">Search By Title</button><br><br>
 </form>
-<button name="show all">Show All</button><br><br>
+<button id="showAll">Show All</button>
+<button name="addNewMovie">Add New Movie/Show</button>
+<button name="addNewSnack">Add New Snack</button><br><br>
 
       <div id="moviesList" ></div>
-      <div id="addNewMovie"></div>
+      <div id="result"></div>
       <div id="snackList"></div>
-      <div id="addNewSnack"></div>
+      
+<form name="newMovieForm">
+
+  <h3>Add New Movie/Show</h3>
+    <input type="text" id="title" placeholder="Title" required><br><br>
+    <input type="number" id="season" placeholder="Season"><br><br>
+    <input type="number" id="epsiode" placeholder="Episode"><br><br>
+
+    <input
+
+    <p>Category:</p>
+    <input type="checkbox" name="category" id="horror">
+    <label for="horror">Horror</label><br>
+    <input type="checkbox" name="category" id="comedy">
+    <label for="comedy">Comedy</label><br>
+    <input type="checkbox" name="category" id="fantasy">
+    <label for="fantasy">Fantasy</label><br>
+    <input type="checkbox" name="category" id="thriller">
+    <label for="thriller">Thriller</label><br>
+    <input type="checkbox" name="category" id="drama">
+    <label for="drama">Drama</label><br>
+    <input type="checkbox" name="category" id="childrens">
+    <label for="childrens">Childrens</label><br>
+    <input type="checkbox" name="category" id="romance">
+    <label for="romance">Romance</label><br>
+    <input type="checkbox" name="category" id="action">
+    <label for="action">Action</label><br>
+    <input type="checkbox" name="category" id="musical">
+    <label for="musical">Musical</label><br>
+    <input type="checkbox" name="category" id="western">
+    <label for="musical">Western</label><br><br>
+    
+    <p>Have Seen:</p>
+    <input type="radio" id="true" name="haveSeen">
+    <label for="true">True</label>
+    <input type="radio" id="false" name="haveSeen">
+    <label for="false">False</label><br><br>
+    
+    <input type="date" id="dateWatched"><br><br>
+    <input type="date" id="dateScheduled"><br><br>
+    <!-- <input type="date" id="dateWatched" placeholder="Date Watched"><br><br> -->
+
+</form>
+
     </main>
   </body>
   
