@@ -11,14 +11,36 @@ function init() {
   var hideAll = document.getElementById('moviesList');
   showAll.addEventListener('click', function(e){
 	  e.preventDefault;
-	 if(hideAll.textContent != ""){ 
-		 showAll.textContent = "Show All";
-		 hideAll.textContent = '';
+	  if(hideAll.textContent != ""){ 
+		  showAll.textContent = "Show All";
+		  hideAll.textContent = '';
 		}else{
 			getAllMovies();
 			showAll.textContent = "Hide All";
-	 }
-  });
+		}
+	});
+	// let showNewMovieBTN = document.getElementById('addNewMovie');
+	// var hideNewForm = document.getElementById('addMovieForm');
+	// showNewMovieBTN.addEventListener('click', function(e){
+	// 	e.preventDefault;
+	//    if(hideNewForm.textContent != ""){ 
+	// 	   //showNewMovieBTN.textContent = "Add New Movie";
+	// 	   hideNewForm.textContent = '';
+		   
+	// 	}
+	// });
+	// let showUpdateMovieBTN = document.getElementById('updateMovie');
+	// var hideUpdateForm = document.getElementById('updateMovieForm');
+	// showUpdateMovieBTN.addEventListener('click', function(e){
+	// 	e.preventDefault;
+	//    if(hideUpdateForm.textContent != ""){ 
+	// 	   //showUpdateMovieBTN.textContent = "Update Movie";
+	// 	   hideUpdateForm.textContent = '';
+		   
+	// 	}
+	// });
+
+
 
   document.searchForm.searchId.addEventListener('click', function(e){
 	e.preventDefault();
@@ -32,6 +54,10 @@ function init() {
 	  console.log("loaded event listener");
 	  getMovieByKeyword(keyword);
   });
+//   document.delete.addEventListener('click', function(e){
+// 	e.preventDefault();
+// 	deleteMovie();
+// });
 
   document.newMovieForm.submit.addEventListener('click', function(e){
 	  e.preventDefault();
@@ -49,6 +75,26 @@ function init() {
 	  };
 	  createNew(newMovie);
   });
+
+//   document.updateMovieForm.submit.addEventListener('click', function(e){
+// 	e.preventDefault();
+// 	let f = document.updateMovieForm;
+// 	let movieId ={
+// 		movieId: f.id.value
+// 	}
+// 	let updatedMovie = {
+// 		title: f.title.value,
+// 		season: f.season.value,
+// 		episode: f.episode.value,
+// 		imageURL: f.img.value,
+// 		category: f.category.value,
+// 		 haveWatched: document.newMovieForm.haveSeen.value === "on" ? "true" : "false",
+// 		dateWatched: f.dateWatched.value,
+// 		dateScheduled: f.dateScheduled.value,
+// 	};
+	
+// 	updateMovie(updatedMovie, movieId);
+// });
 
 // let showForm = document.getElementById('addNewMovie');
 // let hideForm = document.getElementById('addMovieForm');
@@ -126,6 +172,10 @@ function displayMovie(movie){
 	
 	let ul = document.createElement('ul');
 	resultDiv.appendChild(ul);
+
+	let liID = document.createElement('li');
+	liID.textContent = "ID# " + movie.id
+	ul.appendChild(liID);
 	
 	if(movie.season != null || movie.episode != null){
 		let li1 = document.createElement('li');
@@ -147,8 +197,14 @@ function displayMovie(movie){
 		li4.textContent = "Date Scheduled to Watch: " + movie.dateScheduled;
 		ul.appendChild(li4);
 	}
-		
-	
+
+	let deleteBTN = document.createElement('input');
+	let movieId = movie.id;
+	deleteBTN.type = "submit";
+	deleteBTN.value = "Delete";
+	deleteBTN.onclick = deleteMovie(movieId);
+	resultDiv.appendChild(deleteBTN);
+
 }
 
 
@@ -270,7 +326,7 @@ function createNew(newMovie) {
 		if(xhr.readyState === 4){
 			if(xhr.status === 200 || xhr.status === 201){
 				let movie = JSON.parse(xhr.responseText);
-				//displayMovie(movie);
+				displayMovie(movie);
 			}else {
 				console.error('Movie create failed with status: ' + xhr.status);
 			}
@@ -281,15 +337,64 @@ function createNew(newMovie) {
 		xhr.send(JSON.stringify(newMovie));
 }
 
-function hideForm(){
-	var x = document.getElementById('addMovieForm');
+
+function updateMovie(updatedMovie, movieId){
+
+	let xhr = new XMLHttpRequest();
+	xhr.open('PUT', `api/movies/${movieId}`);
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState === 4){
+			if(xhr.status === 200 || xhr.status === 201){
+				let movie = JSON.parse(xhr.responseText);
+				displayMovie(movie);
+			}else{
+				console.error('Movie update failed with status: ' + xhr.status);
+			}
+		}
+	}
+	xhr.setRequestHeader('Content-type', 'application/json');
+		xhr.send(JSON.stringify(updatedMovie));
+}
+
+
+
+function deleteMovie(movieId) {
+	//let movieId = movie.id;
+	let xhr = new XMLHttpRequest();
+	xhr.open('DELETE', `api/movies/${movieId}`);
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState === 4){
+			if(xhr.status === 200 || xhr.status === 201){
+				//let movie = JSON.parse(xhr.responseText);
+				getAllMovies();
+			}else {
+				console.error('Movie delete failed with status: ' + xhr.status);
+			}
+		}
+		
+	}
+		xhr.send();
+}
+
+
+function hideNewMovieForm(){
+	var newMovie = document.getElementById('addMovieForm');
 	
-	if(x.style.display === "none"){
-		x.style.display = "block";
+	if(newMovie.style.display === "none"){
+		newMovie.style.display = "block";
 	}else {
-		x.style.display = "none";
+		newMovie.style.display = "none";
 	}
 
 }
 
+function hideUpdateMovieForm(){
+	var update = document.getElementById('updateMovieForm');
+	
+	if(update.style.display === "none"){
+		update.style.display = "block";
+	}else {
+		update.style.display = "none";
+	}
 
+}

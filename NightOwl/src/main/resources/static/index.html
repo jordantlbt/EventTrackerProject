@@ -16,12 +16,15 @@
 <button name="searchTitle">Search By Title</button><br><br>
 </form>
 <button id="showAll">Show All</button>
-<button name="addNewMovie" onclick="hideForm()">Add New Movie/Show</button>
-<button name="addNewSnack">Add New Snack</button><br><br>
+<button name="addNewMovie" onclick="hideNewMovieForm()">Add New Movie/Show</button>
+<!-- <button name="updateMovie" onclick="hideUpdateMovieForm()">Update</button> -->
+<!-- <button name="addNewSnack">Add New Snack</button><br><br> -->
 
-<div id="moviesList" ></div><br><br>
-<div id="result"></div><br><br>
-<div id="snackList"></div><br><br>
+<div id="moviesList"></div><br><br>
+<div id="result">
+  <!-- <button name="delete" onclick="deleteMovie()">Delete</button> -->
+</div><br><br>
+<!-- <div id="snackList"></div><br><br> -->
 
 
 <div id="addMovieForm">     
@@ -70,8 +73,33 @@
     
     <button name="submit">Submit</button>
 
-</form>
-</div>
+<!-- </form>
+<div id="updateMovieForm">     
+  <form name="updateMovieForm">
+  
+    <h3>Update Movie/Show</h3>
+    
+      <input type="number" id="id" placeholder="Movie/Show Id #" required><br><br>
+      <input type="text" id="title" placeholder="Title" required><br><br>
+      <input type="number" id="season" placeholder="Season"><br><br>
+      <input type="number" id="episode" placeholder="Episode"><br><br>
+      <input type="text" id="img" placeholder="Movie Image URL"><br><br>
+      <input type="text" id="category" placeholder="Category"><br><br>
+
+      <p>Already Watched:</p>
+      <input type="radio" id="true" name="haveSeen">
+      <label for="true">True</label>
+      <input type="radio" id="false" name="haveSeen">
+      <label for="false">False</label><br><br>
+      
+      <p>Date Watched</p>
+      <input type="date" id="dateWatched"><br><br>
+      <p>Date Plan to Watch</p>
+      <input type="date" id="dateScheduled"><br><br>
+      <button name="submit">Submit</button>
+  
+  </form>
+</div> -->
 
     </main>
   </body>
