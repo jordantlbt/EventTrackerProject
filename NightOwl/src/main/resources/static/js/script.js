@@ -26,10 +26,46 @@ function init() {
 		getMovieById(movieId);
   });
 
-//   document.searchForm.searchTitle.addEventListener('click', function(e){
-// 	  e.preventDefault();
-// 	  var new = document.search;
-//   })
+  document.searchForm.searchTitle.addEventListener('click', function(e){
+	  e.preventDefault();
+	  var keyword = document.searchForm.movieSearch.value;
+	  console.log("loaded event listener");
+	  getMovieByKeyword(keyword);
+  });
+
+  document.newMovieForm.submit.addEventListener('click', function(e){
+	  e.preventDefault();
+	  let f = document.newMovieForm;
+	
+	  let newMovie = {
+		  title: f.title.value,
+		  season: f.season.value,
+		  episode: f.episode.value,
+		  imageURL: f.img.value,
+		  category: f.category.value,
+ 		  haveWatched: document.newMovieForm.haveSeen.value === "on" ? "true" : "false",
+		  dateWatched: f.dateWatched.value,
+		  dateScheduled: f.dateScheduled.value,
+	  };
+	  createNew(newMovie);
+  });
+
+// let showForm = document.getElementById('addNewMovie');
+// let hideForm = document.getElementById('addMovieForm');
+// document.body.addNewMovie.addEventListener('click', function(e){
+// 	e.preventDefault();
+// 	if(hideForm.textContent != ""){
+// 		showForm.textContent = "Cancel";
+// 		hideForm.textContent = "";
+// 	}else{
+
+// 		hideForm.textContent = getElementById('addMovieForm');
+// 		showForm.textContent = "Add New Movie";
+// 	}
+	
+	
+
+// });
 
   
 }
@@ -56,6 +92,21 @@ function getMovieById(movieId) {
       if (xhr.status === 200) {
         let movie = JSON.parse(xhr.responseText);
 		displayMovie(movie);
+        
+      }
+    }
+  };
+  xhr.send();
+}
+function getMovieByKeyword(keyword) {
+	console.log('in get movie by keyword function');
+  let xhr = new XMLHttpRequest();
+  xhr.open("GET", `api/movies/search/${keyword}`);
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        let movies = JSON.parse(xhr.responseText);
+		displayAllMovies(movies);
         
       }
     }
@@ -101,6 +152,7 @@ function displayMovie(movie){
 }
 
 
+
 function displayAllMovies(movies) {
   var dataDiv = document.getElementById("moviesList");
   dataDiv.textContent = "";
@@ -143,6 +195,13 @@ function displayAllMovies(movies) {
   for (let movie of movies) {
     let tr = document.createElement("tr");
     tbody.appendChild(tr);
+
+	let tdID = document.createElement("td");
+    tdID.textContent = movie.id;
+    tr.appendChild(tdID);
+	tdID.style.borderBottom = '1px solid black';
+	tdID.style.borderTop = '1px solid black';
+	tdID.style.borderRight = '1px solid black';
 
     let td1 = document.createElement("td");
     td1.textContent = movie.title;
@@ -211,7 +270,7 @@ function createNew(newMovie) {
 		if(xhr.readyState === 4){
 			if(xhr.status === 200 || xhr.status === 201){
 				let movie = JSON.parse(xhr.responseText);
-				displayFilm(film);
+				//displayMovie(movie);
 			}else {
 				console.error('Movie create failed with status: ' + xhr.status);
 			}
@@ -220,6 +279,17 @@ function createNew(newMovie) {
 	}
 		xhr.setRequestHeader('Content-type', 'application/json');
 		xhr.send(JSON.stringify(newMovie));
+}
+
+function hideForm(){
+	var x = document.getElementById('addMovieForm');
+	
+	if(x.style.display === "none"){
+		x.style.display = "block";
+	}else {
+		x.style.display = "none";
+	}
+
 }
 
 
