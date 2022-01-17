@@ -53,11 +53,11 @@ public class MovieController {
 		return null;
 	}
 	
-//	@PutMapping("movies/{movieId}")
-//	public Movie updateMovie(@RequestBody Movie movie, @PathVariable int movieId) {
-//		Movie updatedMovie = movieServ.updateMovie(movie, movieId);
-//		return updatedMovie;
-//	}
+	@PutMapping("movies/{movieId}")
+	public Movie updateMovie(@RequestBody Movie movie, @PathVariable Integer movieId) {
+		Movie updatedMovie = movieServ.updateMovie(movie, movieId);
+		return updatedMovie;
+	}
 	
 	@DeleteMapping("movies/{movieId}")
 	public void deleteMovie(@PathVariable Integer movieId, HttpServletResponse res) {

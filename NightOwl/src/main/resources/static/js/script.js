@@ -54,10 +54,7 @@ function init() {
 	  console.log("loaded event listener");
 	  getMovieByKeyword(keyword);
   });
-//   document.delete.addEventListener('click', function(e){
-// 	e.preventDefault();
-// 	deleteMovie();
-// });
+  
 
   document.newMovieForm.submit.addEventListener('click', function(e){
 	  e.preventDefault();
@@ -202,15 +199,21 @@ function displayMovie(movie){
 	let movieId = movie.id;
 	deleteBTN.type = "submit";
 	deleteBTN.value = "Delete";
-	deleteBTN.onclick = deleteMovie(movieId);
+	deleteBTN.name = "deleteBTN";
+	//deleteBTN.onclick = deleteMovie(movieId);
 	resultDiv.appendChild(deleteBTN);
-
+	
+	deleteBTN.addEventListener('click', function(e){
+		e.preventDefault();
+		deleteMovie(movieId);
+	});
+	
 }
 
 
 
 function displayAllMovies(movies) {
-  var dataDiv = document.getElementById("moviesList");
+  let dataDiv = document.getElementById("moviesList");
   dataDiv.textContent = "";
  
 
@@ -242,9 +245,9 @@ function displayAllMovies(movies) {
   let th7 = document.createElement("th");
   th7.textContent = "Date Plan to Watch";
   thead.appendChild(th7);
-  let th8 = document.createElement("th");
-  th8.textContent = "Snacks";
-  thead.appendChild(th8);
+//   let th8 = document.createElement("th");
+//   th8.textContent = "Snacks";
+//   thead.appendChild(th8);
   let tbody = document.createElement("tbody");
   table.appendChild(tbody);
 
@@ -308,11 +311,11 @@ function displayAllMovies(movies) {
 	td6.style.borderTop = '1px solid black';
 	td6.style.borderRight = '1px solid black';
 
-	let td7 = document.createElement('td');
-    td7.textContent = "snack data here"
-	tr.appendChild(td7);
-	td7.style.borderBottom = '1px solid black';
-	td7.style.borderTop = '1px solid black';
+	// let td7 = document.createElement('td');
+    // td7.textContent = "snack data here"
+	// tr.appendChild(td7);
+	// td7.style.borderBottom = '1px solid black';
+	// td7.style.borderTop = '1px solid black';
 	
   }
 }
@@ -365,8 +368,8 @@ function deleteMovie(movieId) {
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState === 4){
 			if(xhr.status === 200 || xhr.status === 201){
-				//let movie = JSON.parse(xhr.responseText);
-				getAllMovies();
+				var dataDiv = document.getElementById("result");
+				dataDiv.textContent = "";
 			}else {
 				console.error('Movie delete failed with status: ' + xhr.status);
 			}
