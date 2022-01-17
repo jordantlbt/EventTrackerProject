@@ -73,25 +73,26 @@ function init() {
 	  createNew(newMovie);
   });
 
-//   document.updateMovieForm.submit.addEventListener('click', function(e){
-// 	e.preventDefault();
-// 	let f = document.updateMovieForm;
-// 	let movieId ={
-// 		movieId: f.id.value
-// 	}
-// 	let updatedMovie = {
-// 		title: f.title.value,
-// 		season: f.season.value,
-// 		episode: f.episode.value,
-// 		imageURL: f.img.value,
-// 		category: f.category.value,
-// 		 haveWatched: document.newMovieForm.haveSeen.value === "on" ? "true" : "false",
-// 		dateWatched: f.dateWatched.value,
-// 		dateScheduled: f.dateScheduled.value,
-// 	};
+  document.updateMovieForm.submit.addEventListener('click', function(e){
+	e.preventDefault();
+	let f = document.updateMovieForm;
+	let movieId ={
+		movieId: f.id.value
+	}
+	let updatedMovie = {
+		
+		//title: f.title.value,		
+		//season: f.season.value,
+		//episode: f.episode.value,
+		//imageURL: f.img.value,
+		//category: f.category.value,
+		haveWatched: document.newMovieForm.haveSeen.value === "on" ? "true" : "false",
+		dateWatched: f.dateWatched.value,
+		dateScheduled: f.dateScheduled.value,
+	};
 	
-// 	updateMovie(updatedMovie, movieId);
-// });
+	updateMovie(updatedMovie, movieId);
+});
 
 // let showForm = document.getElementById('addNewMovie');
 // let hideForm = document.getElementById('addMovieForm');
@@ -224,6 +225,9 @@ function displayAllMovies(movies) {
   table.appendChild(thead);
   let thr = document.createElement("tr");
   thead.appendChild(thr);
+  let thID = document.createElement("th");
+  thID.textContent = "ID";
+  thead.appendChild(thID);
   let th1 = document.createElement("th");
   th1.textContent = "Title";
   thead.appendChild(th1);
