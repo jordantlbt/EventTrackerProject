@@ -1,0 +1,26 @@
+<h1>Night Owl</h1>
+<h3>Track Your Movie Nights!</h3>
+
+<div class="input-group">
+  <input type="search" class="form-control rounded" placeholder="Search Movie ID" aria-label="Search" aria-describedby="search-addon" />
+  <button type="button" class="btn btn-outline-primary">search</button>
+</div>
+
+ <table *ngIf="!selected" class="table table-hover">
+  <thead>
+    <tr>
+      <td>ID</td>
+      <td>NAME</td>
+      <td>CATEGORY</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let movie of movies" (click)="selected=movie">
+      <td>#{{movie.id}}</td>
+      <td>{{movie.title | titlecase}}</td>
+      <td>{{movie.category}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- <img [src]="movie.img"/> -->

@@ -19,26 +19,26 @@ function init() {
 			showAll.textContent = "Hide All";
 		}
 	});
-	// let showNewMovieBTN = document.getElementById('addNewMovie');
-	// var hideNewForm = document.getElementById('addMovieForm');
-	// showNewMovieBTN.addEventListener('click', function(e){
-	// 	e.preventDefault;
-	//    if(hideNewForm.textContent != ""){ 
-	// 	   //showNewMovieBTN.textContent = "Add New Movie";
-	// 	   hideNewForm.textContent = '';
+	let showNewMovieBTN = document.getElementById('addNewMovie');
+	var hideNewForm = document.getElementById('addMovieForm');
+	showNewMovieBTN.addEventListener('click', function(e){
+		e.preventDefault;
+	   if(hideNewForm.textContent != ""){ 
+		   showNewMovieBTN.textContent = "Add New Movie";
+		   hideNewForm.textContent = '';
 		   
-	// 	}
-	// });
-	// let showUpdateMovieBTN = document.getElementById('updateMovie');
-	// var hideUpdateForm = document.getElementById('updateMovieForm');
-	// showUpdateMovieBTN.addEventListener('click', function(e){
-	// 	e.preventDefault;
-	//    if(hideUpdateForm.textContent != ""){ 
-	// 	   //showUpdateMovieBTN.textContent = "Update Movie";
-	// 	   hideUpdateForm.textContent = '';
+		}
+	});
+	let showUpdateMovieBTN = document.getElementById('updateMovie');
+	var hideUpdateForm = document.getElementById('updateMovieForm');
+	showUpdateMovieBTN.addEventListener('click', function(e){
+		e.preventDefault;
+	   if(hideUpdateForm.textContent != ""){ 
+		   showUpdateMovieBTN.textContent = "Update Movie";
+		   hideUpdateForm.textContent = '';
 		   
-	// 	}
-	// });
+		}
+	});
 
 
 
@@ -78,6 +78,9 @@ function init() {
 	let f = document.updateMovieForm;
 	let movieId ={
 		movieId: f.id.value
+	}
+	if(f.movie.value === null){
+
 	}
 	let updatedMovie = {
 		
