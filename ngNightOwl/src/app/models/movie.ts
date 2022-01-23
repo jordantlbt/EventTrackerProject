@@ -1,9 +1,9 @@
-export class Movies {
+export class Movie {
   id: number | undefined;
   title: string | undefined;
   season: number | undefined;
   episode: number | undefined;
-  img: string | undefined;
+  imageURL: string | undefined;
   category: string | undefined;
   haveWatched: boolean | undefined;
   dateWatched: Date | undefined;
@@ -15,7 +15,7 @@ export class Movies {
     title?: string | undefined,
     season?: number | undefined,
     episode?: number | undefined,
-    img?: string | undefined,
+    imageURL?: string | undefined,
     category?: string | undefined,
     haveWatched?: boolean | undefined,
     dateWatched?: Date | undefined,
@@ -25,7 +25,7 @@ export class Movies {
     this.title = title;
     this.season = season;
     this.episode = episode;
-    this.img = img;
+    this.imageURL = imageURL;
     this.category =  category;
     this.haveWatched = haveWatched;
     this.dateWatched = dateWatched;

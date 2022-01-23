@@ -1,10 +1,48 @@
 <h1>Night Owl</h1>
 <h3>Track Your Movie Nights!</h3>
 
-<div class="input-group">
-  <input type="search" class="form-control rounded" placeholder="Search Movie ID" aria-label="Search" aria-describedby="search-addon" />
+<!-- <div class="input-group">
+  <input name="searchMovie" [(ngModel)]="selected.title" type="search" class="form-control rounded" placeholder="Search Movie/Show" aria-label="Search" aria-describedby="search-addon" />
   <button type="button" class="btn btn-outline-primary">search</button>
-</div>
+</div> -->
+
+<div class="row g-3">
+  <div class="col-sm-4 g-4">
+    <form>
+      <h4>Add New Movie or Show</h4>
+      <input type="text" name="title" [(ngModel)]="newMovie.title" placeholder="Title" aria-label="Name" class="form-control">
+      <input type="number" name="season" [(ngModel)]="newMovie.season" placeholder="Season" aria-label="Height" class="form-control">
+      <input type="number" name="episode" [(ngModel)]="newMovie.episode" placeholder="Episode" aria-label="Weight" class="form-control">
+
+      <label for="category">Category</label>
+
+      <select name="category" id="category" [(ngModel)]="newMovie.category">
+        <option value="action">Action</option>
+        <option value="childrens">Childrens</option>
+        <option value="comedy">Comedy</option>
+        <option value="drama">Drama</option>
+        <option value="fantasy">Fantasy</option>
+        <option value="horror">Horror</option>
+        <option value="musical">Musical</option>
+        <option value="romance">Romance</option>
+        <option value="thriller">Thriller</option>
+        <option value="western">Western</option>
+      </select>
+
+      <!-- <input type="number" name="category" [(ngModel)]="newMovie.category" class="form-control"> -->
+
+      <input type="text" name="imgUrl" [(ngModel)]="newMovie.imageURL" placeholder="Image URL" aria-label="Image URL" class="form-control">
+
+      <input type="checkbox" name="haveWatched" [(ngModel)]="newMovie.haveWatched" class="form-control">
+
+      <input type="date" name="dateWatched" [(ngModel)]="newMovie.dateWatched" class="form-control">
+      <input type="date" name="dateScheduled" [(ngModel)]="newMovie.dateScheduled" class="form-control">
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button (click)="createMovie(newMovie)" class="btn btn-outline-primary btn-sm">Save</button>
+      </div>
+    </form>
+  </div>
+  </div>
 
  <table *ngIf="!selected" class="table table-hover">
   <thead>
@@ -17,10 +55,25 @@
   <tbody>
     <tr *ngFor="let movie of movies" (click)="selected=movie">
       <td>#{{movie.id}}</td>
-      <td>{{movie.title | titlecase}}</td>
+      <td>{{movie.title}}</td>
       <td>{{movie.category}}</td>
     </tr>
   </tbody>
 </table>
 
-<!-- <img [src]="movie.img"/> -->
+
+<div *ngIf="selected">
+  <img [src]="selected.imageURL" style="height: 200px; width: 200px;">
+  <p>ID# {{selected.id}}</p>
+  <h2>{{selected.title}}</h2>
+
+  <p>Season: {{selected.season}}</p>
+  <p>Episode: {{selected.episode}}</p>
+
+  <p>Category: {{selected.category}}</p>
+  <p>Have Watched: {{selected.haveWatched}}</p>
+  <p>Date Watched: {{selected.dateWatched}}</p>
+  <p>Date Scheduled To Watch: {{selected.dateScheduled}}</p>
+  <button (click)="selected = null">Back</button>
+</div>
+

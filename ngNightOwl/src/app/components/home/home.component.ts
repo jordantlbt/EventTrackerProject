@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Movies } from 'src/app/models/movies';
+import { Movie } from 'src/app/models/movie';
 import { MovieService } from 'src/app/services/movie.service';
 
 @Component({
@@ -9,9 +9,9 @@ import { MovieService } from 'src/app/services/movie.service';
 })
 export class HomeComponent implements OnInit {
 
-  selected: Movies | null = null;
-  movies: Movies[] = [];
-  newMovie: Movies = new Movies();
+  selected: Movie | null = null;
+  movies: Movie[] = [];
+  newMovie: Movie = new Movie();
   category = [
     'all',
     'comedy',
@@ -42,5 +42,15 @@ export class HomeComponent implements OnInit {
       err => console.error('observer got an error: ' + err)
     );
    }
+
+   createMovie(movie: Movie){
+    this.movieService.create(movie).subscribe(
+     movies => {
+       this.loadMovies();
+       this.newMovie = new Movie();
+     },
+     err => console.error('observer got an error: ' + err)
+    );
+  }
 
 }

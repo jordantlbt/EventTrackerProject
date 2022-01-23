@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
-import { Movies } from '../models/movies';
+import { Movie } from '../models/movie';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class MovieService {
   ) { }
 
   index() {
-    return this.http.get<Movies[]>(this.baseUrl + this.url + '?sorted=true')
+    return this.http.get<Movie[]>(this.baseUrl + this.url + '?sorted=true')
       .pipe(
         catchError((err: any) => {
           console.log(err);
@@ -25,8 +25,8 @@ export class MovieService {
       );
   }
 
-  create(movie: Movies){
-    return this.http.post<Movies[]>(this.url, movie)
+  create(movie: Movie){
+    return this.http.post<Movie[]>(this.url, movie)
     .pipe(
       catchError((err: any) => {
         console.log(err);
