@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, throwError } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { Movie } from '../models/movie';
 
 @Injectable({
@@ -34,4 +34,20 @@ export class MovieService {
       })
     );
   }
+
+  destroy(id: number){
+    return this.http.delete<void>(`${this.url}/${id}`).pipe(
+    catchError( (error: any)=>{
+        console.log('MovieService.destory(): error deleting movie: ');
+        console.log(error);
+        return throwError(
+          () => new Error(
+            'MovieService.destory(): error deleting movie'
+          )
+        )
+      }
+    )
+    );
+  }
+
 }

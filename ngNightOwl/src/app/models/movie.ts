@@ -1,5 +1,5 @@
 export class Movie {
-  id: number | undefined;
+  id: number;
   title: string | undefined;
   season: number | undefined;
   episode: number | undefined;
@@ -11,7 +11,7 @@ export class Movie {
 
 
   constructor(
-    id?: number | undefined,
+    id: number = 0,
     title?: string | undefined,
     season?: number | undefined,
     episode?: number | undefined,

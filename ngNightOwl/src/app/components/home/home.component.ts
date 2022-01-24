@@ -53,4 +53,17 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  deleteMovie(id: number){
+    this.movieService.destroy(id).subscribe({
+      next: () =>{
+        this.loadMovies();
+      },
+      error: (fail)=> {
+        console.error("HomeComponent.deleteTodo: error delteing movie");
+      console.error(fail);
+
+      }
+    })
+    };
+
 }
