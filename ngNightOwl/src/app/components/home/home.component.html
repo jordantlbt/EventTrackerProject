@@ -6,22 +6,23 @@
   <button type="button" class="btn btn-outline-primary">search</button>
 </div> -->
 
-
-    <form>
-      <h4>Add New Movie or Show</h4>
-      <div class="form-row g-3">
-        <div class="col">
-          <input type="text" name="title" [(ngModel)]="newMovie.title" placeholder="Title" aria-label="Name" class="form-control">
-        </div>
-          <input type="number" name="season" [(ngModel)]="newMovie.season" placeholder="Season" aria-label="Height" class="form-control">
-        </div>
-        <div class="col">
-          <input type="number" name="episode" [(ngModel)]="newMovie.episode" placeholder="Episode" aria-label="Weight" class="form-control">
-        </div>
-        <div class="col">
-           <label for="category">Category</label>
-        </div>
-        <div class="col">
+<button class="btn btn-info" (click)="onSelect()">Add New Movie</button>
+<div [hidden]="IsHidden">
+  <form>
+    <h4>Add New Movie or Show</h4>
+    <div class="form-row g-3">
+      <div class="col">
+        <input type="text" name="title" [(ngModel)]="newMovie.title" placeholder="Title" aria-label="Name" class="form-control">
+      </div>
+      <input type="number" name="season" [(ngModel)]="newMovie.season" placeholder="Season" aria-label="Height" class="form-control">
+    </div>
+    <div class="col">
+      <input type="number" name="episode" [(ngModel)]="newMovie.episode" placeholder="Episode" aria-label="Weight" class="form-control">
+    </div>
+    <div class="col">
+      <label for="category">Category</label>
+    </div>
+    <div class="col">
       <select name="category" id="category" [(ngModel)]="newMovie.category">
         <option value="action">Action</option>
         <option value="childrens">Childrens</option>
@@ -34,11 +35,11 @@
         <option value="thriller">Thriller</option>
         <option value="western">Western</option>
       </select>
-        </div>
-        <div class="col">
+    </div>
+    <div class="col">
       <input type="text" name="imgUrl" [(ngModel)]="newMovie.imageURL" placeholder="Image URL" aria-label="Image URL" class="form-control">
-      </div>
-      <div class="col">
+    </div>
+    <div class="col">
       Have Seen
       <input type="checkbox" name="haveWatched" [(ngModel)]="newMovie.haveWatched" class="form-check-input">
 
@@ -47,8 +48,10 @@
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <button (click)="createMovie(newMovie)" class="btn btn-outline-primary btn-sm">Save</button>
       </div>
-      </div>
-    </form>
+    </div>
+  </form>
+</div>
+
 
 
  <table *ngIf="!selected" class="table table-hover">
@@ -81,7 +84,7 @@
   <p>Have Watched: {{selected.haveWatched}}</p>
   <p>Date Watched: {{selected.dateWatched}}</p>
   <p>Date Scheduled To Watch: {{selected.dateScheduled}}</p>
-  <button class="btn btn-danger" (click)="deleteMovie(selected.id)">X</button>
+  <button class="btn btn-danger" (click)="deleteMovie(selected.id)" (click)="loadMovies()">Delete Movie</button>
   <button (click)="selected = null">Back</button>
 </div>
 

@@ -35,8 +35,8 @@ export class MovieService {
     );
   }
 
-  destroy(id: number){
-    return this.http.delete<void>(`${this.url}/${id}`).pipe(
+  destroy(movieID: number): Observable<void>{
+    return this.http.delete<void>(this.baseUrl + this.url + movieID).pipe(
     catchError( (error: any)=>{
         console.log('MovieService.destory(): error deleting movie: ');
         console.log(error);

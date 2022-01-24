@@ -26,6 +26,11 @@ export class HomeComponent implements OnInit {
     'musical'
   ]
   selectedCategory = 'all';
+  IsHidden= true;
+
+  onSelect(){
+   this.IsHidden= !this.IsHidden;
+  }
 
   constructor(
     private movieService: MovieService,
@@ -53,8 +58,8 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  deleteMovie(id: number){
-    this.movieService.destroy(id).subscribe({
+  deleteMovie(movieID: number){
+    this.movieService.destroy(movieID).subscribe({
       next: () =>{
         this.loadMovies();
       },
