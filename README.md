@@ -2,7 +2,7 @@
 
 ## Overview
 
-Night Owl is a RESTFUL API project that allows you to track and plan movie nights. You can add in movies or TV shows that you have seen or want to see, the date you watched them or are planning on watching them and add in the snack you ate or are planning to eat. You can also search for certain movies/shows/snacks by id, keywords, titles and seasons.
+Night Owl is a Full Stack RESTFUL API project that allows you to track and plan movie nights. You can add in movies or TV shows that you have seen or want to see, the date you watched them or are planning on watching them. You can also search for certain movies/shows/snacks by id, keywords, titles and seasons.
 
 ### REST API
 
@@ -10,7 +10,11 @@ The first part of this project consisted of designing the database in MYSQL MySQ
 
 ### HTML/JavaScript Front End
 
+Using Javascript I created a front end for this website. I employed eventListeners and used XMLHttpRequests to create the functionality and talk with the back end controllers.
+
 ### Angular Front End
+
+The last part of this project I used Angular TypeScript and Bootstrap to develop and design the front-end of this website. I created models, components, services and the html pages in VSCode.
 
 ## REST API Reference
 | Return Type    | HTTP Method | URI                                 | Request Body | Purpose  |
@@ -22,16 +26,12 @@ The first part of this project consisted of designing the database in MYSQL MySQ
 | Void           | DELETE      | /api/movies/{id}                    |              | Delete   |
 | Movie          | Get         | /api/movies/search/{keyword}        |              | Retrieve |
 | Movie          | Get         | /api/movies/search/{title}/{season} |              | Retrieve |
-| List \<Snack\> | GET         | /api/snacks                         |              | List     |
-| Snack          | GET         | /api/snacks/{snackId}               |              | Retrieve |
-| Snack          | POST        | /api/snacks                         | Snack JSON   | Create   |
-| Void           | DELETE      | /api/snacks/{snackId}               |              | Delete   |
-| Snack          | GET         | /api/snacks/{keyword}               |              | Retrieve |
+
 
 ## Technologies Used
 
-Spring Tool Suit, Java, MySQL, MySQLWorkbench, JSON, Postman, Git, Github, Terminal, Gradle
+Spring Tool Suit, Java, MySQL, MySQLWorkbench, JSON, Postman, Git, Github, Terminal, Gradle, Javascript, HTML, Angular, TypeScript, VSCode
 
 ## Lessons Learned
 
-This project helped me solidify my knowledge of combining a JPA project with a REST project. I am becoming more comfortable with writing a controller, the REST API mappings, and HttpServletResponses. While testing my own controller mappings with Postman, I came across new Http Status Codes that I had to research and update my code to get the correct response. 
+This project helped me solidify my knowledge of combining a JPA project with a REST project. I am becoming more comfortable with writing a controller, the REST API mappings, and HttpServletResponses. While testing my own controller mappings with Postman, I came across new Http Status Codes that I had to research and update my code to get the correct response.
